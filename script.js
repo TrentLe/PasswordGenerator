@@ -25,13 +25,10 @@ var choice;
 // FUnction for password
 function generatePassword() {
   
-
 // Ask how many characters does the user want
-
 let pLength = prompt(`How many characters would you like in your password ? (Choose between 8-128 characters) `);
 
-//if less than 8 try again
-
+//If less than 8 or more than 128 try again
 if (pLength < 8) {
   alert('You need more characters My Guy !');
   generatePassword();
@@ -49,15 +46,57 @@ var loCase = confirm('Do you want lower case letters ?');
 
 // if yes to all generate random password using all parameters
 if (number && spcChar && upCase && loCase ) {
+
   choice = letters.concat(num, inc, cap);
+
+//Different combonations on what the user may choose as input parameters
+} else if (number && spcChar && loCase){
+
+  choice = inc.concat(letters, num)
+
+} else if (spcChar && upCase){
+
+  choice = cap.concat(inc)
+
+} else if (number && spcChar && upCase){
+
+  choice = inc.concat(num, cap)
+
+} else if (number && upCase && loCase){
+
+  choice = cap.concat(num, letters)
+
+} else if (number && upCase){
+
+  choice = cap.concat(num)
+
+} else if (number && spcChar){
+
+  choice = inc.concat(num)
+
+} else if (number && loCase){
+
+  choice = letters.concat(num)
+
+} else if (spcChar && upCase && loCase){
+
+  choice = letters.concat(cap, inc)
+
+} else if (spcChar && loCase){
+
+  choice = letters.concat(inc)
+
+} else if (upCase && loCase){
+
+  choice = letters.concat(cap)
+
+} else {
+//User didnt choose enough parameters for a strong password
+  alert('You need more than that my guy !')
+  generatePassword();
 }
-// else if yes to numbers and no to special characters
 
-// else if yes to special characters and no to numbers
-
-// else you need something my guy
-
-// generate and print password for user
+// Generate and print password for user using their input
 for (let i = 0; i < pLength; i++) {
   var decision = choice[Math.floor(Math.random() * choice.length)];
   pass.push(decision);
@@ -65,7 +104,7 @@ for (let i = 0; i < pLength; i++) {
 
 var finPass = pass.join('');
 
-
+// Display newly generated password for user
 document.getElementById('password').textContent = finPass;
 
 return finPass;
