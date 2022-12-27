@@ -20,7 +20,7 @@ var letters = ['z','y','x','w','v','u','t','s','r','q','p','o','n','m','l','k','
 var cap = letters.toUpperCase;
 
 var pass = [];
-var choice;
+var choice = [];
 
 // FUnction for password
 function generatePassword() {
@@ -52,11 +52,11 @@ if (number && spcChar && upCase && loCase ) {
 //Different combonations on what the user may choose as input parameters
 } else if (number && spcChar && loCase){
 
-  choice = inc.concat(letters, num)
+  choice = inc.concat(letters, num);
 
 } else if (spcChar && upCase){
 
-  choice = cap.concat(inc)
+  choice = cap.concat(inc);
 
 } else if (number && spcChar && upCase){
 
@@ -64,7 +64,7 @@ if (number && spcChar && upCase && loCase ) {
 
 } else if (number && upCase && loCase){
 
-  choice = cap.concat(num, letters)
+  choice = letters.concat(num, cap)
 
 } else if (number && upCase){
 
